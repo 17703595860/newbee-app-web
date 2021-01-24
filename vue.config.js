@@ -5,7 +5,7 @@ module.exports = {
     productionSourceMap: false,
 
     devServer: {
-        port: 5500,
+        port: 9001,
         open: true
     }
 }

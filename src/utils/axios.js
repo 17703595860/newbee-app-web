@@ -1,9 +1,9 @@
 import axios from "axios"
 import {Toast} from 'vant'
-import router from "../router";
+import router from "../router"
 
 // 基础的请求地址
-axios.defaults.baseURL = process.env.NODE_HOME == 'development' ? 'http://127.0.0.1:8080/api' : 'http://127.0.0.1:8080/api'
+axios.defaults.baseURL = process.env.NODE_HOME == 'development' ? 'http://127.0.0.1:9002/api' : 'http://127.0.0.1:9002/api'
 // 跨域请求是否要携带cookie，
 axios.defaults.withCredentials = true
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
@@ -34,7 +34,7 @@ axios.interceptors.response.use(
         if (resultCode == 401) {
           // 返回401，没有登录状态，路由跳转到login页面，
           // 这里的 window.vRouter是在main.js中绑定到window上的，window.VRouter = router
-          window.router.push({path: '/login'})
+          router.push({path: '/login'})
         }
         if (resultCode == 403) {
           // 返回403，没有权限
