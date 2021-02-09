@@ -33,7 +33,7 @@
     <div class="goods">
       <header class="goods-header">推荐商品</header>
       <div class="goods-box">
-        <div class="goods-item" v-for="item in recommendGoodsList" :key="item.goodsId" @click="goToDetail(item)">
+        <div class="goods-item" v-for="item in recommendGoodsList" :key="item.goodsId" @click="goToDetail(item.goodsId)">
           <img class="goods-img" :src="item.goodsCoverImg" alt="">
           <div class="goods-desc">
             <div class="title">{{ item.goodsName }}</div>
@@ -45,7 +45,7 @@
     <div class="goods">
       <header class="goods-header">新品上线</header>
       <div class="goods-box">
-        <div class="goods-item" v-for="item in newGoodsList" :key="item.goodsId" @click="goToDetail(item)">
+        <div class="goods-item" v-for="item in newGoodsList" :key="item.goodsId" @click="goToDetail(item.goodsId)">
           <img class="goods-img" :src="item.goodsCoverImg" alt="">
           <div class="goods-desc">
             <div class="title">{{ item.goodsName }}</div>
@@ -57,7 +57,7 @@
     <div class="goods">
       <header class="goods-header">热门商品</header>
       <div class="goods-box">
-        <div class="goods-item" v-for="item in hotGoodsList" :key="item.goodsId" @click="goToDetail(item)">
+        <div class="goods-item" v-for="item in hotGoodsList" :key="item.goodsId" @click="goToDetail(item.goodsId)">
           <img class="goods-img" :src="item.goodsCoverImg" alt="">
           <div class="goods-desc">
             <div class="title">{{ item.goodsName }}</div>
@@ -144,12 +144,19 @@ export default {
         this.isLogin = true
       }
       await indexInfo.getAll().then(res => {
-        console.log(res)
         this.carouseList = res.data.carouses
         this.newGoodsList = res.data.newGoods
         this.hotGoodsList = res.data.hotGoods
         this.recommendGoodsList = res.data.recommendGoods
       })
+    },
+    goTo(redirectUrl){
+      console.log(redirectUrl)
+      // window.open(redirectUrl)
+      this.$router.push('/goodsDetail/' + 10233)
+    },
+    goToDetail(goodsId){
+      this.$router.push('/goodsDetail/' + goodsId)
     }
   }
 }
