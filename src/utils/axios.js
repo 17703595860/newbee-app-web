@@ -1,9 +1,10 @@
-import axios from "axios"
-import {Toast} from 'vant'
-import router from "../router"
+import axios from 'axios'
+import { Toast } from 'vant'
+import router from "@/router";
+// import router from "../router"
 
 // 基础的请求地址
-axios.defaults.baseURL = process.env.NODE_HOME == 'development' ? 'http://127.0.0.1:9002/api' : 'http://127.0.0.1:9002/api'
+axios.defaults.baseURL = process.env.NODE_HOME == 'development' ? 'http://127.0.0.1:9002/' : 'http://127.0.0.1:9002/'
 // 跨域请求是否要携带cookie，
 axios.defaults.withCredentials = true
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
@@ -24,28 +25,29 @@ axios.interceptors.request.use(
 // interceptors 是拦截器，每个请求都会经过这个拦截器，返回的数据可以通过拦截器处理后返回
 axios.interceptors.response.use(
     response => {
-      if (typeof response.data !== 'object') {
-        Toast.fail('服务端异常')
-        return Promise.reject(new Error(response.data))
-      }
-      const resultCode = response.data.resultCode
-      if (resultCode != 200) {
-        if (response.data.message) Toast.fail(response.data.message)
-        if (resultCode == 401) {
-          // 返回401，没有登录状态，路由跳转到login页面，
-          // 这里的 window.vRouter是在main.js中绑定到window上的，window.VRouter = router
-          router.push({path: '/login'})
-        }
-        if (resultCode == 403) {
-          // 返回403，没有权限
-          Toast.fail('没有权限')
-        }
-        return Promise.reject(response.data)
-      }
-      return response.data
+      return Promise.resolve(response.data)
     },
     error => {
-      Toast.fail(error.message ? error.message : '系统异常')
+      const response = error.response
+      if (!response) {
+        Toast.fail('服务器异常')
+        return Promise.reject(error)
+      }
+      const data = response.data
+      if (response.status === 401) {
+        // 返回401，没有登录状态，路由跳转到login页面，
+        // 这里的 window.vRouter是在main.js中绑定到window上的，window.VRouter = router
+        localStorage.removeItem("token")
+        router.push({path: '/login'})
+      } else if (response.status === 403) {
+        // 返回403，没有权限
+        Toast.fail('没有权限')
+      } else if (response.status === 404) {
+        // 返回403，没有权限
+        Toast.fail('没有找到对应资源')
+      } else {
+        Toast.fail(data.message ? data.message : '系统异常')
+      }
       return Promise.reject(error)
     }
 )

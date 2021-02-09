@@ -3,29 +3,40 @@
     <transition :name="transitionName">
       <router-view class="router-view"/>
     </transition>
-    <div id="nav" style="position: relative;z-index: 9999999999">
-      <router-link to="/">Home</router-link>
-      |
-      <router-link to="/about">About</router-link>
-    </div>
+    <!-- 通过v-if控制底部导航显示和隐藏，值通过路由监控，如果在列表中，显示，如果不在，隐藏 -->
+    <NavBar v-if="isShowNav"></NavBar>
   </div>
 </template>
 
 <script>
+  import NavBar from "@/components/NavBar";
   export default {
+    components: { NavBar },
     data() {
       return {
-        transitionName: 'slide-left'
+        transitionName: 'slide-left', // 页面滑动动画
+        isShowNav: true,  // 是否显示底部导航栏
+        showMenuList: ['/', '/home', '/category', '/cart', '/user']  // 要展示底部导航的页面列表
       }
     },
     watch: {
-      $router(to, from) {
-        if (to.meta.index > from.meta.index) {
-          this.transitionName = 'slide-left' // 向左滑动
-        } else if (to.meta.index < from.meta.index) {
-          this.transitionName = 'slide-right' // 向右滑动
+      $route(to, from) {
+        // 通过 ES6 提供的 includes 属性判断是否包含在数组内
+        if (this.showMenuList.includes(to.path)) {
+          this.isShowNav = true
         } else {
-          this.transitionName = ''  // 同级无过度动画
+          this.isShowNav = false
+        }
+        // 有主级到次级
+        if (to.meta.index > from.meta.index) {
+          // 向左滑动
+          this.transitionName = 'slide-left'
+        } else if (to.meta.index < from.meta.index) {
+          // 由次级到主级
+          this.transitionName = 'slide-right'
+        } else {
+          //同级无过渡效果
+          this.transitionName = ''
         }
       }
     }
@@ -39,21 +50,8 @@
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
+    // text-align: center;
     color: #2c3e50;
-  }
-
-  #nav {
-    padding: 30px;
-
-    a {
-      font-weight: bold;
-      color: #2c3e50;
-
-      &.router-link-exact-active {
-        color: #42b983;
-      }
-    }
   }
 
   .router-view {

@@ -1,27 +1,68 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    name: 'home',
+    redirect: 'home'
+  },
+  {
+    name: 'home',
+    path: '/home',
+    component: () => import('../views/Home'),
     meta: {
-      index: 1  // 添加meta属性，约定1为第一级
+      index: 1
     }
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    name: 'category',
+    path: '/category',
+    component: () => import('../views/Category'),
     meta: {
-      index: 2  // 添加meta属性，约定2位第二级
+      index: 1
+    }
+  },
+  {
+    name: 'cart',
+    path: '/cart',
+    component: () => import('../views/Cart'),
+    meta: {
+      index: 1
+    }
+  },
+  {
+    name: 'user',
+    path: '/user',
+    component: () => import('../views/User'),
+    meta: {
+      index: 1
+    }
+  },
+  {
+    name: 'goodsDetail',
+    path: '/goodsDetail',
+    component: () => import('../views/GoodsDetail'),
+    meta: {
+      index: 2
+    }
+  },
+  {
+    name: 'login',
+    path: '/login',
+    component: () => import('../views/Login'),
+    meta: {
+      index: 2
+    }
+  },
+  {
+    name: 'register',
+    path: '/register',
+    component: () => import('../views/Login'),
+    meta: {
+      index: 2
     }
   }
 ]
