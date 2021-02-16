@@ -43,7 +43,8 @@ const routes = [
   },
   {
     name: 'goodsDetail',
-    path: '/goodsDetail',
+    path: '/goods-detail/:id',
+    props: true,
     component: () => import('../views/GoodsDetail'),
     meta: {
       index: 2

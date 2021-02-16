@@ -76,6 +76,7 @@ import Verify from 'vue2-verify';
 // eslint-disable-next-line no-unused-vars
 import user from "@/api/user";
 import localStorage from "@/utils/localStorage";
+import {mapActions} from 'vuex';
 
 export default {
   name: "Login",
@@ -102,6 +103,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['updateCart']),
     rePasswordValidate() {
       if (this.form.rePassword === this.form.password) {
         return true
@@ -137,6 +139,7 @@ export default {
           message: '登录成功',
           duration: 500
         })
+        this.updateCart()
         this.$router.push("/home")
       } else {
         await user.register({
