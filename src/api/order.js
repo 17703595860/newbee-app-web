@@ -5,7 +5,7 @@ function getAll() {
 }
 
 function getOrder(orderNo) {
-  return axios.get(`api/order/{orderNo}`)
+  return axios.get(`api/order/${orderNo}`)
 }
 
 function generateOrder(param) {

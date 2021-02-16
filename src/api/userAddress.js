@@ -13,7 +13,7 @@ function updateUserAddress(param) {
 }
 
 function deleteUserAddress(id) {
-  return axios.delete(`api/user-address/{id}`)
+  return axios.delete(`api/user-address/${id}`)
 }
 
 function clearUserAddress() {

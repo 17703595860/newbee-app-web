@@ -29,7 +29,7 @@
                   <!-- <img class="category-main-img" :src="category.mainImgUrl" v-if="category.mainImgUrl"/> -->
                   <div class="category-list" v-for="(products, index) in category.children" :key="index">
                     <p class="catogory-title">{{products.categoryName}}</p>
-                    <div class="product-item" v-for="(product, index) in products.children" :key="index" @click="selectProduct(product)">
+                    <div class="product-item" v-for="(product, index) in products.children" :key="index" @click="searchGooods(product.categoryId)">
                       <img src="//s.weituibao.com/1583591077131/%E5%88%86%E7%B1%BB.png" class="product-img"/>
                       <p v-text="product.categoryName" class="product-title"></p>
                     </div>
@@ -85,8 +85,10 @@ export default {
       let $screenHeight = document.documentElement.clientHeight
       this.$refs.searchWrap.style.height = $screenHeight - 100 + 'px'
     },
-    selectProduct(item){
-      this.$router.push({ path: `product-list?categoryId=${item.categoryId}` })
+    searchGooods(categoryId){
+      this.$router.push({ name: 'searchList', params: {
+          categoryId: categoryId
+      }})
     }
   }
 }

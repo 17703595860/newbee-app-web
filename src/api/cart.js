@@ -25,7 +25,7 @@ function updateCart(param) {
 }
 
 function deleteCart(cartId) {
-  return axios.delete(`api/shop-cart/{cartId}`)
+  return axios.delete(`api/shop-cart/${cartId}`)
 }
 
 function clearCart() {

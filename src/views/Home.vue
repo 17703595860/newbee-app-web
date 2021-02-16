@@ -153,10 +153,10 @@ export default {
     goTo(redirectUrl){
       console.log(redirectUrl)
       // window.open(redirectUrl)
-      this.$router.push('/goodsDetail/' + 10233)
+      this.$router.push('/goods-detail/' + 10233)
     },
     goToDetail(goodsId){
-      this.$router.push('/goodsDetail/' + goodsId)
+      this.$router.push('/goods-detail/' + goodsId)
     }
   }
 }

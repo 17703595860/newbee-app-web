@@ -64,6 +64,14 @@ const routes = [
     meta: {
       index: 2
     }
+  },
+  {
+    name: 'searchList',
+    path: '/search-list',
+    component: () => import('../views/SearchList'),
+    meta: {
+      index: 2
+    }
   }
 ]
 
