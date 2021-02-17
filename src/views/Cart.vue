@@ -1,7 +1,12 @@
 <template>
   <div class="cart-box">
     <SimpleHeader :title="title"></SimpleHeader>
-    <div class="cart-body">
+    <div v-if="!cartList.length" class="empty">
+      <van-icon name="smile-o" />
+      <div class="title">购物车空空空如也</div>
+      <van-button color="#1baeae" type="primary" class="empty-button" @click="toHome">前往首页</van-button>
+    </div>
+    <div v-if="cartList.length" class="cart-body">
       <van-checkbox-group @change="groupChange" v-model="currList" ref="checkboxGroup">
         <van-swipe-cell :right-width="50" v-for="(item, index) in cartList" :key="index">
         <div class="good-item">
@@ -135,6 +140,9 @@ export default {
       const cartIds = this.currList.join(',')
       console.log(cartIds)
       this.$router.push({name: 'createOrder', params: {cartIds: cartIds}})
+    },
+    toHome() {
+      this.$router.push('/home')
     }
   }
 }
@@ -142,6 +150,22 @@ export default {
 
 <style lang="less" scoped>
 @import '../common/style/mixin';
+
+.empty {
+  width: 100%;
+  text-align: center;
+  margin: 200px auto;
+  .van-icon-smile-o {
+    font-size: 50px;
+  }
+  .title {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .empty-button{
+    width: 50%;
+  }
+}
 .cart-box {
   .cart-body {
     margin: 60px 0 100px 0;
