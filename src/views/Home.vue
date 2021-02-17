@@ -31,9 +31,9 @@
     </div>
     <!--  商品  -->
     <div class="goods">
-      <header class="goods-header">推荐商品</header>
+      <header class="goods-header">新品上线</header>
       <div class="goods-box">
-        <div class="goods-item" v-for="item in recommendGoodsList" :key="item.goodsId" @click="goToDetail(item.goodsId)">
+        <div class="goods-item" v-for="item in newGoodsList" :key="item.goodsId" @click="goToDetail(item.goodsId)">
           <img class="goods-img" :src="item.goodsCoverImg" alt="">
           <div class="goods-desc">
             <div class="title">{{ item.goodsName }}</div>
@@ -43,9 +43,9 @@
       </div>
     </div>
     <div class="goods">
-      <header class="goods-header">新品上线</header>
+      <header class="goods-header">推荐商品</header>
       <div class="goods-box">
-        <div class="goods-item" v-for="item in newGoodsList" :key="item.goodsId" @click="goToDetail(item.goodsId)">
+        <div class="goods-item" v-for="item in recommendGoodsList" :key="item.goodsId" @click="goToDetail(item.goodsId)">
           <img class="goods-img" :src="item.goodsCoverImg" alt="">
           <div class="goods-desc">
             <div class="title">{{ item.goodsName }}</div>

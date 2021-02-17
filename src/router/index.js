@@ -73,7 +73,16 @@ const routes = [
     meta: {
       index: 2
     }
-  }
+  },
+  {
+    name: 'createOrder',
+    path: '/create-order',
+    props: true,
+    component: () => import('../views/CreateOrder'),
+    meta: {
+      index: 2
+    }
+  },
 ]
 
 const router = new VueRouter({

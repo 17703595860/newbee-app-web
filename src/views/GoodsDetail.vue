@@ -77,6 +77,11 @@ export default {
         this.$toast.success('添加成功')
         this.updateCart()
       }
+    },
+    async goToCart() {
+      await cart.addCart({ goodsCount: 1, goodsId: this.detail.goodsId })
+      this.$store.dispatch('updateCart')
+      this.$router.push({ path: '/cart' })
     }
   }
 }
