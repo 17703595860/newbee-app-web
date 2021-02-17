@@ -4,6 +4,12 @@ function getAll() {
   return axios.get('api/order')
 }
 
+function getAllPage(param) {
+  return axios.get('api/order/page', {
+    params: param
+  })
+}
+
 function getOrder(orderNo) {
   return axios.get(`api/order/${orderNo}`)
 }
@@ -18,4 +24,4 @@ function paySuccess(param) {
   })
 }
 
-export default { getAll, getOrder, generateOrder, paySuccess }
+export default { getAll, getAllPage, getOrder, generateOrder, paySuccess }

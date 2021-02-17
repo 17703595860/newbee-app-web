@@ -83,6 +83,50 @@ const routes = [
       index: 2
     }
   },
+  {
+    name: 'address',
+    path: '/address',
+    props: true,
+    component: () => import('../views/Address'),
+    meta: {
+      index: 2
+    }
+  },
+  {
+    name: 'addressEdit',
+    path: '/address-edit',
+    props: true,
+    component: () => import('../views/AddressEdit'),
+    meta: {
+      index: 3
+    }
+  },
+  {
+    path: '/about',
+    name: 'about',
+    meta: {
+      index: 2
+    },
+    component: () => import('../views/About.vue'),
+  },
+  {
+    name: 'order',
+    path: '/order',
+    props: true,
+    component: () => import('../views/Order'),
+    meta: {
+      index: 2
+    }
+  },
+  {
+    name: 'orderDetail',
+    path: '/order-detail/:orderNo',
+    props: true,
+    component: () => import('../views/OrderDetail'),
+    meta: {
+      index: 3
+    }
+  },
 ]
 
 const router = new VueRouter({

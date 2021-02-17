@@ -4,6 +4,14 @@ function getAll() {
   return axios.get('api/user-address')
 }
 
+function getUserAddressById(id) {
+  return axios.get(`api/user-address/${id}`)
+}
+
+function getDefaultUserAddress() {
+  return axios.get(`api/user-address/default`)
+}
+
 function addUserAddress(param) {
   return axios.post('api/user-address', param)
 }
@@ -20,4 +28,4 @@ function clearUserAddress() {
   return axios.delete('api/user-address/clear')
 }
 
-export default { getAll, addUserAddress, updateUserAddress, deleteUserAddress, clearUserAddress }
+export default { getAll, getUserAddressById, getDefaultUserAddress, addUserAddress, updateUserAddress, deleteUserAddress, clearUserAddress }

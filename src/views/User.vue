@@ -13,7 +13,7 @@
     </div>
     <ul class="user-content">
       <li>
-        <router-link to="">我的订单</router-link>
+        <router-link to="/order">我的订单</router-link>
         <van-icon name="arrow" />
       </li>
       <li>
@@ -21,11 +21,11 @@
         <van-icon name="arrow" />
       </li>
       <li>
-        <router-link to="">地址管理</router-link>
+        <router-link to="/address">地址管理</router-link>
         <van-icon name="arrow" />
       </li>
       <li>
-        <router-link to="">关于我们</router-link>
+        <router-link to="/about">关于我们</router-link>
         <van-icon name="arrow" />
       </li>
     </ul>

@@ -1,13 +1,13 @@
 <template>
   <div class="category-box">
-    <header class="category-header wrap">
-      <i class="nbicon nbfanhui" @click="goHome"></i>
-      <div class="header-search">
-        <i class="nbicon nbSearch"></i>
-        <router-link tag="span" class="search-title" to="/product-list">全场50元起步</router-link>
-      </div>
-      <i class="nbicon nbmore"></i>
-    </header>
+    <SimpleHeader :show-title="false">
+      <template slot="center">
+        <div class="header-search">
+          <i class="nbicon nbSearch"></i>
+          <router-link tag="span" class="search-title" to="/search-list">全场50元起步</router-link>
+        </div>
+      </template>
+    </SimpleHeader>
     <div class="search-wrap" ref="searchWrap">
       <list-scroll :scroll-data="categoryList" class="nav-side-wrapper">
         <ul class="nav-side">
@@ -47,10 +47,12 @@
 <script>
 import category from "@/api/category";
 import ListScroll from "@/components/ListScroll";
+import SimpleHeader from "@/components/SimpleHeader";
 
 export default {
   name: "Category",
-  components: { ListScroll },
+  // eslint-disable-next-line vue/no-unused-components
+  components: { ListScroll, SimpleHeader },
   data() {
     return {
       categoryList: [],
@@ -94,29 +96,18 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 @import '../common/style/mixin';
 .category-box {
-  .category-header {
-    background: #fff;
-    position: fixed;
-    left: 0;
-    top: 0;
-    .fj();
+  .simple-header-box {
     .wh(100%, 50px);
     line-height: 50px;
-    padding: 0 15px;
     box-sizing: border-box;
     font-size: 15px;
     color: #656771;
     z-index: 10000;
-    &.active {
-      background: @primary;
-    }
-    .icon-left {
-      font-size: 25px;
-      font-weight: bold;
-    }
+    overflow: hidden;
+
     .header-search {
       display: flex;
       width: 80%;
@@ -134,6 +125,9 @@ export default {
       .search-title {
         font-size: 12px;
         color: #666;
+      }
+      span{
+        width: auto;
       }
     }
   }
@@ -187,7 +181,7 @@ export default {
               width: 100%;
               font-size: 17px;
               font-weight: 500;
-              padding: 20px 0;
+              padding: 10px 0 20px;
             }
             .product-item {
               width: 33.3333%;

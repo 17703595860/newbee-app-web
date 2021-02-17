@@ -30,7 +30,10 @@ axios.interceptors.response.use(
     error => {
       const response = error.response
       if (!response) {
-        Toast.fail('服务器异常')
+        Toast.fail({
+          message: '服务器异常',
+          duration: 500
+        })
         return Promise.reject(error)
       }
       const data = response.data
@@ -41,12 +44,21 @@ axios.interceptors.response.use(
         router.push({path: '/login'})
       } else if (response.status === 403) {
         // 返回403，没有权限
-        Toast.fail('没有权限')
+        Toast.fail({
+          message: '没有权限',
+          duration: 500
+        })
       } else if (response.status === 404) {
         // 返回403，没有权限
-        Toast.fail('没有找到对应资源')
+        Toast.fail({
+          message: '没有找到对应资源',
+          duration: 500
+        })
       } else {
-        Toast.fail(data.message ? data.message : '系统异常')
+        Toast.fail({
+          message: data.message ? data.message : '系统异常',
+          duration: 500
+        })
       }
       return Promise.reject(error)
     }
