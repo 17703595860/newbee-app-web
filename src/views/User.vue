@@ -17,7 +17,7 @@
         <van-icon name="arrow" />
       </li>
       <li>
-        <router-link to="">账号管理</router-link>
+        <router-link to="/setting">账号管理</router-link>
         <van-icon name="arrow" />
       </li>
       <li>

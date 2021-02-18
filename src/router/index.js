@@ -127,6 +127,15 @@ const routes = [
       index: 3
     }
   },
+  {
+    name: 'setting',
+    path: '/setting',
+    props: true,
+    component: () => import('../views/Setting'),
+    meta: {
+      index: 3
+    }
+  },
 ]
 
 const router = new VueRouter({

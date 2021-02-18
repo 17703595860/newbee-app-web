@@ -1,10 +1,10 @@
 <template>
   <div class="order-box">
-    <SimpleHeader :title="title" />
+    <SimpleHeader :title="title" :parent-go-back="true" />
     <van-tabs @change="onChangeTab" :color="'#1baeae'" :title-active-color="'#1baeae'" class="order-tab" v-model="status">
       <van-tab title="全部" name=''></van-tab>
       <van-tab title="待付款" name="0"></van-tab>
-      <van-tab title="待确认" name="1"></van-tab>
+      <van-tab title="已支付" name="1"></van-tab>
       <van-tab title="待发货" name="2"></van-tab>
       <van-tab title="已发货" name="3"></van-tab>
       <van-tab title="交易完成" name="4"></van-tab>
@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import order from "@/api/order";
-import SimpleHeader from "@/components/SimpleHeader";
+import order from "../api/order";
+import SimpleHeader from "../components/SimpleHeader";
 
 export default {
   name: "Order",
@@ -104,6 +104,9 @@ export default {
     },
     toOrderDetail(orderNo) {
       this.$router.push(`/order-detail/${orderNo}`)
+    },
+    goBack() {
+      this.$router.push('/user')
     }
   }
 }
