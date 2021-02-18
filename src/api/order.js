@@ -24,4 +24,8 @@ function paySuccess(param) {
   })
 }
 
-export default { getAll, getAllPage, getOrder, generateOrder, paySuccess }
+function updateOrderStatus(param) {
+  return axios.put('api/order/updateOrderStatus', param)
+}
+
+export default { getAll, getAllPage, getOrder, generateOrder, paySuccess, updateOrderStatus }
