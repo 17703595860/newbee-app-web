@@ -88,14 +88,28 @@ export default {
       this.$dialog.confirm({
         title: '确认取消订单？',
       }).then(() => {
-        console.log(orderNo)
-        // order.(id).then(res => {
-        //   if (res.resultCode == 200) {
-        //     Toast('删除成功')
-        //     this.init()
-        //   }
-        // })
+        order.updateOrderStatus({
+          orderNo: orderNo,
+          status: -1
+        }).then(({data}) => {
+          this.$toast.success({
+            message: '删除成功',
+            duration: 500
+          })
+          this.detail = data
+        })
       })
+    },
+    showPayFn() {
+      this.showPay = true
+    },
+    async payOrder(orderNo, payType) {
+      await order.paySuccess({
+        orderNo: orderNo,
+        payType: payType
+      })
+      this.initData()
+      this.showPay = false
     }
   }
 }
